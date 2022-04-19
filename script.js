@@ -60,7 +60,31 @@ function GetDirections() {
         directionsManager.setRenderOptions({ itineraryContainer: document.getElementById('printoutPanel') });
         directionsManager.calculateDirections();
     });
-
 }//end get directions function
+
+function Search() {
+
+    //Loads the map
+    var myMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        center: new Microsoft.Maps.Location(30.392834, -88.887085),
+        zoom: 12
+    });
+
+    Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+        var searchManager = new Microsoft.Maps.Search.SearchManager(myMap);
+        var input = document.getElementById("searchInput").value;
+
+        var requestOptions = {
+            bounds: map.getBounds(),
+            where: input,
+            callback: function (answer, userData) {
+                map.setView({ bounds: answer.results[0].bestView });
+                map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
+            }//end callback 
+        };//end var 
+        searchManager.geocode(requestOptions);
+    });//end loadModule
+
+}//end function 
 
 
