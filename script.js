@@ -3,7 +3,7 @@
 var myMap   = undefined;
 var mapDiv  = undefined;
 function loadMapScenario() {
-    myMap = document.getElementById('myMap');
+    myMap = document.getElementById(('myMap'), {});
 
-    mapDiv = new Microsoft.Maps.Map;
+    mapDiv = new Microsoft.Maps.Map(myMap);
 }//end function
