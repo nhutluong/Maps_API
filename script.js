@@ -4,10 +4,14 @@ var center;
 var polygon;
 var pushpin;
 
-//START UP MAP UPON INITIALIZATION 
+
+//init map 
 function LoadMap() {
     //Loads the map
-    loadMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+    loadMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+        navigationBarMode: Microsoft.Maps.NavigationBarMode.minified,
+        supportedMapTypes: [Microsoft.Maps.MapTypeId.road, Microsoft.Maps.MapTypeId.aerial, Microsoft.Maps.MapTypeId.grayscale, Microsoft.Maps.MapTypeId.canvasLight]
+    });
 
     pushpin = new Microsoft.Maps.Pushpin(loadMap.getCenter(), {
         icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
@@ -17,7 +21,6 @@ function LoadMap() {
 }//end load map function
 
 //CREATE POLYGON BASED ON CENTER 
-
 function Polygon() {
     center = loadMap.getCenter();
     polygon = new Microsoft.Maps.Polygon([
