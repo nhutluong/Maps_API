@@ -1,27 +1,25 @@
 // JavaScript source code
-var myMap;
+var loadMap;
 var center;
 var polygon;
+var pushpin;
+
 //START UP MAP UPON INITIALIZATION 
 function LoadMap() {
-
     //Loads the map
-    myMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        center: new Microsoft.Maps.Location(30.392834, -88.887085),
-        zoom: 12
-    });
+    loadMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
 
-    //Enables the search bar and sets up the zoom features
-    myMap.setOptions({
-        maxZoom: 15,
-        minZoom: 5,
-        showSearchBar: true
+    pushpin = new Microsoft.Maps.Pushpin(loadMap.getCenter(), {
+        icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+        anchor: new Microsoft.Maps.Point(12, 39)
     });
+    loadMap.entities.push(pushpin);
 }//end load map function
 
 //CREATE POLYGON BASED ON CENTER 
+
 function Polygon() {
-    center = myMap.getCenter();
+    center = loadMap.getCenter();
     polygon = new Microsoft.Maps.Polygon([
         new Microsoft.Maps.Location(center.latitude - 0.05, center.longitude - 0.05),
         new Microsoft.Maps.Location(center.latitude + 0.01, center.longitude - 0.05),
@@ -49,11 +47,10 @@ function Search() {
     });//end loadModule
 }//end function
 
-function GetDirections() {
-    
+function GetDirections() {    
 
     Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
-        var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+        var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(loadMap);
 
         // Set Route Mode to driving
         directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
