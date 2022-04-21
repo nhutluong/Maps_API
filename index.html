@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en">
+<html>
 <head>
     <title>loadmapasyncHTML</title>
     <style type='text/css'>
@@ -12,11 +11,27 @@
         }
     </style>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+
+    <!--scripts-->
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AgK1Pq8GNiNukYdk4HlGmik2p4TTD_6CtMBbybKu_gUWM3f5RrpmKgKtSqxacSAc'></script>
-    <script src="script.js"></script>
+    <script tupe='text/javascript' src="script.js" ></script>    
+
 </head>
-<body onload='loadMap();'>
+<body onload='LoadMap();'>
+    <div class="poi-container">
+        <button class="poiBtn" id="poiGrocery" type="submit" onclick="">Groceries</button>
+        <button class="poiBtn" id="poiRestaurant" type="submit" onclick="">Restaurants</button>
+        <button class="poiBtn" id="poiGas" type="submit" onclick="">Gas</button>
+        <button class="poiBtn" id="poiHotel" type="submit" onclick="">Hotels</button>       
+        <button class="polyBtn" type="submit" onclick="Polygon()">Polygon</button>
+    </div>
+
     <div id='printoutPanel'></div>
+
     <div id='myMap' style='width: 100vw; height: 100vh;'></div>
+
+    
+
+
 </body>
 </html>

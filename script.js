@@ -1,50 +1,56 @@
 // JavaScript source code
-
-var myMap   = undefined;
-
+var myMap;
+var center;
+var polygon;
+//START UP MAP UPON INITIALIZATION 
 function LoadMap() {
 
     //Loads the map
-    var myMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+    myMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {
         center: new Microsoft.Maps.Location(30.392834, -88.887085),
         zoom: 12
     });
 
     //Enables the search bar and sets up the zoom features
-    map.setOptions({
+    myMap.setOptions({
         maxZoom: 15,
         minZoom: 5,
         showSearchBar: true
     });
 }//end load map function
 
+//CREATE POLYGON BASED ON CENTER 
 function Polygon() {
-    //Loads the map
-    var myMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        center: new Microsoft.Maps.Location(30.392834, -88.887085),
-        zoom: 12
-    });
-    var center = map.getCenter();
-
-    var polygon = new Microsoft.Maps.Polygon([
-
+    center = myMap.getCenter();
+    polygon = new Microsoft.Maps.Polygon([
         new Microsoft.Maps.Location(center.latitude - 0.05, center.longitude - 0.05),
         new Microsoft.Maps.Location(center.latitude + 0.01, center.longitude - 0.05),
-        new Microsoft.Maps.Location(center.latitude + 0.01, center.longitude + 0.05)], null);
+        new Microsoft.Maps.Location(center.latitude + 0.01, center.longitude + 0.05)], null
+    );
+        
+    myMap.entities.push(polygon);
+}//end function 
 
-    map.entities.push(polygon);
-}//end draw polygon function
+function Search() {
 
-const directionsButton = document.querySelector('#get-directions');
-directionsButton.addEventListener('click', function () { GetDirections(); })
+    Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+        var searchManager = new Microsoft.Maps.Search.SearchManager(myMap);
+        var input = document.getElementById("searchInput").value;
+
+        var requestOptions = {
+            bounds: map.getBounds(),
+            where: input,
+            callback: function (answer, userData) {
+                map.setView({ bounds: answer.results[0].bestView });
+                map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
+            }//end callback 
+        };//end var 
+        searchManager.geocode(requestOptions);
+    });//end loadModule
+}//end function
 
 function GetDirections() {
-    var myMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-
-        /* No need to set credentials if already passed in URL */
-        center: new Microsoft.Maps.Location(30.392834, -88.887085),
-        zoom: 12
-    });
+    
 
     Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
         var directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
@@ -61,30 +67,3 @@ function GetDirections() {
         directionsManager.calculateDirections();
     });
 }//end get directions function
-
-function Search() {
-
-    //Loads the map
-    var myMap = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        center: new Microsoft.Maps.Location(30.392834, -88.887085),
-        zoom: 12
-    });
-
-    Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-        var searchManager = new Microsoft.Maps.Search.SearchManager(myMap);
-        var input = document.getElementById("searchInput").value;
-
-        var requestOptions = {
-            bounds: map.getBounds(),
-            where: input,
-            callback: function (answer, userData) {
-                map.setView({ bounds: answer.results[0].bestView });
-                map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
-            }//end callback 
-        };//end var 
-        searchManager.geocode(requestOptions);
-    });//end loadModule
-
-}//end function 
-
-
