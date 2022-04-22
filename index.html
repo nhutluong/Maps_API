@@ -13,17 +13,7 @@
     </style>
 </head>
 
-<body onload='LoadMap();'>
-
-    <div id='printoutPanel'></div>
-
-    <div id='sdsPageResultsHeader'>
-        <div id='pageResultsButtons'>
-            <input type='button' value='<' onclick='pageBackwards();' />
-            <input type='button' value='>' onclick='pageForward();' />
-        </div>
-        <div id='pageInfo'></div>
-    </div>
+<body onload='LoadMap();'>    
 
     <div class="poi-container">
         <button class="poiBtn" id="poiGrocery" type="submit" onclick="">Groceries</button>
@@ -31,6 +21,28 @@
         <button class="poiBtn" id="poiGas" type="submit" onclick="">Gas</button>
         <button class="poiBtn" id="poiHotel" type="submit" onclick="">Hotels</button>
         <button class="polyBtn" type="submit" onclick="Polygon()">Polygon</button>
+    </div>
+
+    <input id='searchTbx' type='text' />
+    <input type='button' value='Search' onclick='Search()' />
+    <br />
+    <div id="myMap" style="position:relative;width:1000px;height:800px;float:left;"></div>
+    <div id='output' style="margin-left:10px;float:left;padding:0;"></div>
+
+    <div id='routeInfoPanel'></div>
+    <div class="directionsContainer">
+        <div id="directionsPanel"></div>
+        <div id="directionsItinerary"></div>
+
+        <div id='printoutPanel'></div>
+
+        <div id='sdsPageResultsHeader'>
+            <div id='pageResultsButtons'>
+                <input type='button' value='<' onclick='pageBackwards();' />
+                <input type='button' value='>' onclick='pageForward();' />
+            </div>
+            <div id='pageInfo'></div>
+        </div>
     </div>
 
     <div id='myMap' style='width: 100vw; height: 100vh;'></div>

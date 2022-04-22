@@ -26,7 +26,7 @@ function LoadMap() {
 Microsoft.Maps.loadModule('Microsoft.Maps.SpatialDataService', function () {
     //Create a query to get nearby data.
     queryOptions = {
-        queryUrl: `http://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest?spatialFilter=nearby(40.83274904439099,-74.3163299560546935,5)&$filter=EntityTypeID%20eq%20'6000'&$select=EntityID,DisplayName,Latitude,Longitude,__Distance&$top=3&key=AgK1Pq8GNiNukYdk4HlGmik2p4TTD_6CtMBbybKu_gUWM3f5RrpmKgKtSqxacSAc`,
+        queryUrl: `https://spatial.virtualearth.net/REST/v1/data/Microsoft/PointsOfInterest?spatialFilter=nearby(40.83274904439099,-74.3163299560546935,5)&$filter=EntityTypeID%20eq%20'6000'&$select=EntityID,DisplayName,Latitude,Longitude,__Distance&$top=3&key=AgK1Pq8GNiNukYdk4HlGmik2p4TTD_6CtMBbybKu_gUWM3f5RrpmKgKtSqxacSAc`,
         top: 10,
         inlineCount: true,
         spatialFilter: {
