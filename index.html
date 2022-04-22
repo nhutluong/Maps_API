@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>loadmapasyncHTML</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
     <style type='text/css'>
         body {
             margin: 0;
@@ -10,29 +11,33 @@
             font-family: 'Segoe UI',Helvetica,Arial,Sans-Serif
         }
     </style>
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-
-    <!--scripts-->
-    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AgK1Pq8GNiNukYdk4HlGmik2p4TTD_6CtMBbybKu_gUWM3f5RrpmKgKtSqxacSAc'></script>
-    <script tupe='text/javascript' src="script.js" ></script>    
-
 </head>
+
 <body onload='LoadMap();'>
+
     <div id='printoutPanel'></div>
+
+    <div id='sdsPageResultsHeader'>
+        <div id='pageResultsButtons'>
+            <input type='button' value='<' onclick='pageBackwards();' />
+            <input type='button' value='>' onclick='pageForward();' />
+        </div>
+        <div id='pageInfo'></div>
+    </div>
+
     <div class="poi-container">
         <button class="poiBtn" id="poiGrocery" type="submit" onclick="">Groceries</button>
         <button class="poiBtn" id="poiRestaurant" type="submit" onclick="">Restaurants</button>
         <button class="poiBtn" id="poiGas" type="submit" onclick="">Gas</button>
-        <button class="poiBtn" id="poiHotel" type="submit" onclick="">Hotels</button>       
+        <button class="poiBtn" id="poiHotel" type="submit" onclick="">Hotels</button>
         <button class="polyBtn" type="submit" onclick="Polygon()">Polygon</button>
     </div>
 
-    
-
     <div id='myMap' style='width: 100vw; height: 100vh;'></div>
 
-    
-
+    <!--scripts-->
+    <script tupe='text/javascript' src="script.js"></script>
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AgK1Pq8GNiNukYdk4HlGmik2p4TTD_6CtMBbybKu_gUWM3f5RrpmKgKtSqxacSAc'></script>
 
 </body>
 </html>
