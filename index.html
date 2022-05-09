@@ -31,7 +31,6 @@
             float: left;
         }
     </style>
-
 </head>
 
 <body onload='LoadMap();'>
@@ -41,7 +40,7 @@
     <br />
 
     <div class="searchbar">
-
+        <!--dropdown menu-->
         <label for="points">Points of Interests</label>
 
         <select id="menu" onchange="returnQueryOptions()">
@@ -60,25 +59,25 @@
 
     </div>
 
-    <div id="myMap" style="position:relative;width:800px;height:600px;float:right;">
-
-    </div>
+    <div id="myMap" style="position:relative;width:800px;height:600px;float:right;"></div>
 
     <!--displays results on search-->
     <div id='output' style="margin-left:10px;float:left;padding:0;">
         <div class="directionsContainer" style="position:relative;height:400px;">
             <div id="directionsPanel"></div>
             <div id="directionsItinerary"></div>
-        </div>
-        
+        </div>        
     </div>
+
+    <!--implementation to select polygon area (in progress)-->
     <input type="button" onclick="drawSearchArea()" value="Select Data" />
 
-    Destination: <input type="text" id="detinationTbx" value="1 Microsoft Way, Redmond, WA" />
+    <input type="text" id="detinationTbx" value="1 Microsoft Way, Redmond, WA" />
     <br />
     <br />
     <input type="button" value="Start Continuous Tracking" onclick="startTracking()" />
     <input type="button" value="Stop Continuous Tracking" onclick="stopTracking()" />
+
     <!--scripts-->
     <script type='text/javascript' src="script.js"></script>
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AgK1Pq8GNiNukYdk4HlGmik2p4TTD_6CtMBbybKu_gUWM3f5RrpmKgKtSqxacSAc' async defer></script>
