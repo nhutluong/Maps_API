@@ -10,46 +10,78 @@
             overflow: hidden;
             font-family: 'Segoe UI',Helvetica,Arial,Sans-Serif
         }
+                
+        html, body {
+            padding: 10;
+            margin: 10;
+            height: 100%;
+        }
+
+        .directionsContainer {
+            width: 380px;
+            height: 100%;
+            overflow-y: auto;
+            float: left;
+        }
+
+        #myMap {
+            position: relative;
+            width: calc(100% - 380px);
+            height: 100%;
+            float: left;
+        }
     </style>
+
 </head>
 
-<body onload='LoadMap();'>    
-
-    <div class="poi-container">
-        <button class="poiBtn" id="poiGrocery" type="submit" onclick="">Groceries</button>
-        <button class="poiBtn" id="poiRestaurant" type="submit" onclick="">Restaurants</button>
-        <button class="poiBtn" id="poiGas" type="submit" onclick="">Gas</button>
-        <button class="poiBtn" id="poiHotel" type="submit" onclick="">Hotels</button>
-        <button class="polyBtn" type="submit" onclick="Polygon()">Polygon</button>
-    </div>
+<body onload='LoadMap();'>
 
     <input id='searchTbx' type='text' />
     <input type='button' value='Search' onclick='Search()' />
     <br />
-    <div id="myMap" style="position:relative;width:1000px;height:800px;float:left;"></div>
-    <div id='output' style="margin-left:10px;float:left;padding:0;"></div>
 
-    <div id='routeInfoPanel'></div>
-    <div class="directionsContainer">
-        <div id="directionsPanel"></div>
-        <div id="directionsItinerary"></div>
+    <div class="searchbar">
 
-        <div id='printoutPanel'></div>
+        <label for="points">Points of Interests</label>
 
-        <div id='sdsPageResultsHeader'>
-            <div id='pageResultsButtons'>
-                <input type='button' value='<' onclick='pageBackwards();' />
-                <input type='button' value='>' onclick='pageForward();' />
-            </div>
-            <div id='pageInfo'></div>
-        </div>
+        <select id="menu" onchange="returnQueryOptions()">
+            <option value="">Choose one …</option>
+            <option value="hospitals">Hospitals</option>
+            <option value="coffee">Coffee Shops</option>
+            <option value="gasstations">Gas Station</option>
+            <option value="grocerystores">Grocery Stores</option>
+            <option value="restaurants">Restaurants</option>
+            <option value="banks">Banks</option>
+            <option value="transit">Transit Stations</option>
+            <option value="hotels">Hotels</option>
+            <option value="casinos">Casinos</option>
+            <option value="airport">Airport</option>
+        </select>
+
     </div>
 
-    <div id='myMap' style='width: 100vw; height: 100vh;'></div>
+    <div id="myMap" style="position:relative;width:800px;height:600px;float:right;">
 
+    </div>
+
+    <!--displays results on search-->
+    <div id='output' style="margin-left:10px;float:left;padding:0;">
+        <div class="directionsContainer" style="position:relative;height:400px;">
+            <div id="directionsPanel"></div>
+            <div id="directionsItinerary"></div>
+        </div>
+        
+    </div>
+    <input type="button" onclick="drawSearchArea()" value="Select Data" />
+
+    Destination: <input type="text" id="detinationTbx" value="1 Microsoft Way, Redmond, WA" />
+    <br />
+    <br />
+    <input type="button" value="Start Continuous Tracking" onclick="startTracking()" />
+    <input type="button" value="Stop Continuous Tracking" onclick="stopTracking()" />
     <!--scripts-->
-    <script tupe='text/javascript' src="script.js"></script>
-    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AgK1Pq8GNiNukYdk4HlGmik2p4TTD_6CtMBbybKu_gUWM3f5RrpmKgKtSqxacSAc'></script>
+    <script type='text/javascript' src="script.js"></script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AgK1Pq8GNiNukYdk4HlGmik2p4TTD_6CtMBbybKu_gUWM3f5RrpmKgKtSqxacSAc' async defer></script>
 
 </body>
 </html>
